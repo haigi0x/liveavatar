@@ -1,24 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createKnowledge } from "@/app/lib/lemonslice";
+import { speak } from "@/app/lib/lemonslice";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, content } = body;
+    const { session_id, text } = body;
 
-    if (!name || !content) {
+    if (!session_id || !text) {
       return NextResponse.json(
-        { error: "name and content are required" },
+        { error: "session_id and text are required" },
         { status: 400 },
       );
     }
 
-    const data = await createKnowledge(name, content);
+    const data = await speak(session_id, text);
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Error creating knowledge:", error);
+    console.error("Error sending speak request:", error);
     return NextResponse.json(
-      { error: "Failed to create knowledge" },
+      { error: "Failed to send speak request" },
       { status: 500 },
     );
   }

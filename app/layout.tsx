@@ -5,8 +5,8 @@ import NavBar from "@/components/NavBar";
 
 export const metadata: Metadata = {
   title: {
-    default: "HeyGen Live Avatar Service",
-    template: `%s - HeyGen Live Avatar Service`,
+    default: "Live Avatar",
+    template: `%s - Live Avatar`,
   },
 };
 
@@ -18,10 +18,10 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="ja">
       <head />
-      <body className="min-h-screen bg-black text-white font-sans">
-        <main className="relative flex flex-col gap-6 h-screen w-screen">
+      <body className="min-h-screen bg-zinc-950 text-white font-sans">
+        <main className="relative flex flex-col h-screen w-screen">
           <NavBar />
-          {children}
+          <div className="flex-1 overflow-auto">{children}</div>
         </main>
       </body>
     </html>
